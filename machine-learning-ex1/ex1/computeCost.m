@@ -13,10 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
-
-
-
+difference = (X * theta) - y;
+differenceSquare = difference.^2;
+differenceSum = sum(differenceSquare);
+J = differenceSum / (2 * m);
 % =========================================================================
 
 end
