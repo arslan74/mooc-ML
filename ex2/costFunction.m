@@ -25,18 +25,19 @@ y_inverse = y';
 
 y_1 = (-y_inverse) * sigmoid_log;
 
-y_0 = 1 - sigmoid_log;
+y_0 = 1 - sigmoid_z;
 y_0 = log(y_0);
 subtract_y_1 = (1 - y_inverse);
 y_0 = subtract_y_1 * y_0; 
 
 j = y_1 - y_0;
-j = j / m
+J = j / m;
 
 % theta values
 
-
-
+start = (sigmoid_z - y)';
+start = start * X;
+grad = start / m;
 
 
 % =============================================================
