@@ -62,12 +62,45 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+y_matrix = eye(num_labels)(y,:);
 
+a1 = [ones(m,1) X]; 
+z2 = a1 * Theta1';
 
+a2 = [ones(m,1) sigmoid(z2)];
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
 
+left_side = (-1 *y_matrix) .* log(a3);
+right_side = (1 - y_matrix) .* log(1 - a3);
+J = sum(sum(left_side - right_side)) / m;
 
+squ_theta1 = Theta1(:,2:end) .^ 2;
+squ_theta2 = Theta2(:,2:end) .^ 2;
+squ_theta_sum = sum(sum(squ_theta1,2)) + sum(sum(squ_theta2,2));
+theta_sum = (lambda / (2* m)) * (squ_theta_sum);
+J = J + theta_sum;
 
+% total features
+n = size(X,2);
+n = n+1;
+% hidden layer units
+h = hidden_layer_size;
+% out units
+r = num_labels;
 
+d3 = a3 - y_matrix;
+
+d2 = d3 * Theta2(:,2:end);
+dz2 = sigmoidGradient(z2);
+d2 = d2 .* dz2;
+
+Delta1 = d2' * a1;
+Delta12 = d3' * a2;
+
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta12 / m;
+test = "stop";
 
 
 
