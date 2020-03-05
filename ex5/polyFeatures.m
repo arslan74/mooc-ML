@@ -14,9 +14,13 @@ X_poly = zeros(numel(X), p);
 %               column of X contains the values of X to the p-th power.
 %
 % 
+for power = 1:p;
+
+X_poly(:,power) = bsxfun(@power , X(:,1), power);
+
+end
 
 
-X_poly = bsxfun(@power, X, p);
 
 
 
