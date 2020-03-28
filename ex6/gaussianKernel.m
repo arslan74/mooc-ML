@@ -16,9 +16,15 @@ sim = 0;
 %
 %
 
+differenceVector = (x1 - x2) ;
+squaredVector =  differenceVector .^2;
+numinater = sum(squaredVector) * -1;
 
+demnunator = 2 * (sigma .^ 2);
 
+sim = numinater / demnunator;
 
+sim = exp(sim);
 
 
 % =============================================================
